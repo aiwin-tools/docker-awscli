@@ -17,5 +17,4 @@ RUN apk --update --no-cache add \
 WORKDIR /root
 VOLUME /root/.aws
 
-ENTRYPOINT [ "aws" ]
-CMD ["--version"]
+CMD ["/bin/bash"]
