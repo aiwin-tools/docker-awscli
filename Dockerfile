@@ -1,11 +1,22 @@
-FROM ubuntu:16.04
+FROM alpine:3.7
+MAINTAINER josemiguel.maldonado@aiwin.es
 
-RUN apt-get update \
-    && apt-get install -y python zip jq curl groff git gettext-base \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk --update --no-cache add \
+    python3 \
+    py2-pip \
+    jq \
+    bash \
+    git \
+    groff \
+    less \
+    mailcap \
+    bash \
+    && pip3 install --no-cache-dir awscli \
+    && apk del py-pip \
+    && rm -rf /var/cache/apk/* /root/.cache/pip/*
 
-RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "/tmp/get-pip.py" && \
-  python /tmp/get-pip.py && \
-  pip install awscli --ignore-installed six
+WORKDIR /root
+VOLUME /root/.aws
 
-CMD ["/usr/local/bin/aws"]
+ENTRYPOINT [ "aws" ]
+CMD ["--version"]
