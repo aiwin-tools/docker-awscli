@@ -10,7 +10,6 @@ RUN apk --update --no-cache add \
     groff \
     less \
     mailcap \
-    bash \
     && pip3 install --no-cache-dir awscli \
     && apk del py2-pip \
     && rm -rf /var/cache/apk/* /root/.cache/pip/*
