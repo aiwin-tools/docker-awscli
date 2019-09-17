@@ -15,6 +15,3 @@ RUN apk --update --no-cache add \
     && rm -rf /var/cache/apk/* /root/.cache/pip/*
 
 WORKDIR /root
-VOLUME /root/.aws
-
-CMD ["/bin/bash"]
